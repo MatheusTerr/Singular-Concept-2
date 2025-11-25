@@ -162,6 +162,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const contactForm = document.querySelector(".contact-form");
   contactForm?.addEventListener("submit", (event) => {
     event.preventDefault();
-    alert("Recebemos seu diagnóstico. Voltaremos em breve.");
+    alert("Recebemos seu diagnóstico. Respondemos em até 24h.");
   });
 });
