@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Singular — A Inteligência, Orquestrada.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="neural-field" aria-hidden="true"></canvas>
+  <div class="bg-gradient"></div>
+  <div class="noise"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <header class="site-header glass">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="presentation">
+          <path d="M32 4 8 16v32l24 12 24-12V16Z" fill="url(#g)" stroke="rgba(96,165,250,0.5)" stroke-width="2"/>
+          <path d="M32 4v24l-24 12" fill="none" stroke="rgba(96,165,250,0.6)" stroke-width="2"/>
+          <path d="M32 28 56 16" fill="none" stroke="rgba(96,165,250,0.6)" stroke-width="2"/>
+          <defs>
+            <linearGradient id="g" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#2563EB"/>
+              <stop offset="1" stop-color="#60A5FA"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">Singular</span>
+        <span class="brand-slogan">A Inteligência, Orquestrada.</span>
+      </div>
+    </div>
+    <nav class="nav">
+      <a href="#home" class="nav-link">Início</a>
+      <a href="#methodology" class="nav-link">Metodologia</a>
+      <a href="#solutions" class="nav-link">Soluções</a>
+      <a href="#impact" class="nav-link">Impacto</a>
+      <a href="#future" class="nav-link">Futuro</a>
+      <a href="#contact" class="nav-link nav-cta">Contato</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main class="page">
+    <section id="home" class="section hero" data-animate>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="pill">Boutique de IA · Zero Lag Policy</div>
+          <h1>Orquestre a <span class="text-gradient">Inteligência</span>.</h1>
+          <p class="lede">Da engenharia de prompts avançada aos agentes autônomos que operam enquanto você dorme. A Singular implementa o futuro no seu presente.</p>
+          <div class="cta-row">
+            <a class="btn primary" data-magnetic href="#contact">Agendar Diagnóstico Grátis</a>
+            <a class="btn ghost" data-magnetic href="#solutions">Conhecer Soluções</a>
+          </div>
+          <div class="hero-points">
+            <div class="point">
+              <span class="dot tiny"></span>
+              Agnósticos: GPT-4, Claude 3.5, Gemini Pro.
+            </div>
+            <div class="point">
+              <span class="dot tiny"></span>
+              Dados blindados. Segredos não treinam IAs públicas.
+            </div>
+            <div class="point">
+              <span class="dot tiny"></span>
+              Arquétipos: Mago + Governante — transformação com controle.
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="orbital">
+            <div class="orb-core"></div>
+            <div class="ring ring-1"></div>
+            <div class="ring ring-2"></div>
+            <div class="ring ring-3"></div>
+            <div class="satellite s-1"></div>
+            <div class="satellite s-2"></div>
+            <div class="satellite s-3"></div>
+          </div>
+          <div class="stack">
+            <div class="stack-card">
+              <p class="label">Protocolo</p>
+              <p class="title">Zero Lag Policy</p>
+              <p class="desc">UI e automações otimizadas para mobile e desktop sem latência.</p>
+            </div>
+            <div class="stack-card">
+              <p class="label">Consenso</p>
+              <p class="title">Mago + Governante</p>
+              <p class="desc">Transformação com governança. Guardrails, trilha de auditoria e consenso multi-modelos.</p>
+            </div>
+            <div class="stack-card">
+              <p class="label">Sigilo</p>
+              <p class="title">Dados Blindados</p>
+              <p class="desc">Segredos e contratos isolados. Nenhum dado alimenta modelos públicos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="marquee">
+        <div class="marquee-track">
+          <span>Framework 4I's</span>
+          <span>Agentes Autônomos 24/7</span>
+          <span>Colmeia Neural (Alpha)</span>
+          <span>Dados Blindados</span>
+          <span>Zero Lag Policy</span>
+          <span>Consensus Board</span>
+        </div>
+        <div class="marquee-track" aria-hidden="true">
+          <span>Framework 4I's</span>
+          <span>Agentes Autônomos 24/7</span>
+          <span>Colmeia Neural (Alpha)</span>
+          <span>Dados Blindados</span>
+          <span>Zero Lag Policy</span>
+          <span>Consensus Board</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="methodology" class="section methodology" data-animate>
+      <div class="section-header">
+        <p class="eyebrow">Método 4I's</p>
+        <h2>A Inteligência, Orquestrada.</h2>
+        <p class="lede">Framework proprietário para eliminar alucinações, guiar agentes e construir consenso entre modelos.</p>
+      </div>
+      <div class="method-grid">
+        <article class="glass-card">
+          <p class="tag">Intenção</p>
+          <h3>Claridade de KPI.</h3>
+          <p class="copy">Definimos propósito, sucesso e limites. Sem intenção clara, nada escala.</p>
+        </article>
+        <article class="glass-card">
+          <p class="tag">Instrução</p>
+          <h3>Arquitetura de prompt.</h3>
+          <p class="copy">Prompt stacks com estrutura e guardrails para consenso entre múltiplos modelos.</p>
+        </article>
+        <article class="glass-card">
+          <p class="tag">Input</p>
+          <h3>Dados curados.</h3>
+          <p class="copy">Contexto correto, isolamento de segredos e trilha de auditoria.</p>
+        </article>
+        <article class="glass-card">
+          <p class="tag">Iteração</p>
+          <h3>Ajuste fino contínuo.</h3>
+          <p class="copy">Feedback real-time, pesos dinâmicos e ensemble adaptativo.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="solutions" class="section solutions" data-animate>
+      <div class="section-header">
+        <p class="eyebrow">Soluções</p>
+        <h2>Os Produtos Reais (Método Adapta).</h2>
+        <p class="lede">Três ofertas orquestradas para abrir portas, automatizar operações e ampliar a liderança.</p>
+      </div>
+      <div class="solution-grid">
+        <article class="solution-card glass-card" data-magnetic>
+          <div class="icon">
+            <span class="dot"></span>
+            <span class="arc"></span>
+          </div>
+          <p class="tag">Treinamento Corporativo</p>
+          <h3>Engenharia de Prompts 4I's.</h3>
+          <p class="copy">Elimine alucinações e erros básicos. Treinamos sua equipe com o framework (Intenção, Instrução, Input, Iteração) e as 16 variáveis de controle que desbloqueiam o raciocínio profundo da IA.</p>
+          <p class="audience">Marketing, RH e Comercial.</p>
+        </article>
+        <article class="solution-card glass-card" data-magnetic>
+          <div class="icon">
+            <span class="gear"></span>
+            <span class="dot"></span>
+          </div>
+          <p class="tag">Automação Inteligente</p>
+          <h3>Agentes Autônomos 24/7.</h3>
+          <p class="copy">Implementação de “Agentes Offline” inspirados em tecnologia asiática. Eles rodam em servidores seguros, executando fluxos complexos (ler e-mails, emitir notas, atualizar CRM) mesmo com seu computador desligado.</p>
+          <p class="audience">Operações, Logística e Financeiro.</p>
+        </article>
+        <article class="solution-card glass-card" data-magnetic>
+          <div class="icon">
+            <span class="crown"></span>
+            <span class="dot"></span>
+          </div>
+          <p class="tag">Consultoria Executiva</p>
+          <h3>Gestão Aumentada (Executive OS).</h3>
+          <p class="copy">O “Novo Pacote Office” para CEOs e Advogados. Assistentes que analisam contratos em segundos e geram insights estratégicos, dando um reset no trabalho manual da liderança.</p>
+          <p class="audience">C-Level, Sócios e Diretores.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="impact" class="section impact" data-animate>
+      <div class="section-header">
+        <p class="eyebrow">Impacto</p>
+        <h2>Vantagem injusta em números.</h2>
+        <p class="lede">Sistemas Cognitivos rodando em background, redução de custo e tempo com segurança corporativa.</p>
+      </div>
+      <div class="impact-grid">
+        <div class="impact-card glass-card">
+          <p class="stat">-40%</p>
+          <p class="label">custo operacional em fluxos automatizados.</p>
+        </div>
+        <div class="impact-card glass-card">
+          <p class="stat">24/7</p>
+          <p class="label">agentes offline executando tarefas críticas.</p>
+        </div>
+        <div class="impact-card glass-card">
+          <p class="stat">0</p>
+          <p class="label">dados vazando para modelos públicos.</p>
+        </div>
+        <div class="impact-card glass-card">
+          <p class="stat">4I's</p>
+          <p class="label">framework ensinando times a orquestrar IA com segurança.</p>
+        </div>
+      </div>
+      <div class="stack-info glass-card">
+        <div>
+          <p class="tag">Stack</p>
+          <h3>Agnósticos, com consenso.</h3>
+          <p class="copy">GPT-4, Claude 3.5 e Gemini Pro, balanceados por pesos de consenso e guardrails.</p>
+        </div>
+        <div class="stack-row">
+          <span class="chip glow">API isolada</span>
+          <span class="chip glow">Trilha de auditoria</span>
+          <span class="chip glow">Segurança e compliance</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="future" class="section future" data-animate>
+      <div class="future-content">
+        <p class="eyebrow">R&D</p>
+        <h2>Projeto Colmeia Neural (Alpha).</h2>
+        <p class="lede">O futuro não é uma única IA, é o consenso. Estamos desenvolvendo a Colmeia Neural: uma interface que conectará múltiplos modelos para debater problemas complexos em tempo real. Em breve disponível para clientes select.</p>
+        <a class="btn primary" data-magnetic href="#contact">Entrar na Lista de Espera</a>
+      </div>
+      <div class="future-visual" aria-hidden="true">
+        <div class="core"></div>
+        <div class="orb orbit-1"></div>
+        <div class="orb orbit-2"></div>
+        <div class="orb orbit-3"></div>
+        <div class="orbit-ring r1"></div>
+        <div class="orbit-ring r2"></div>
+        <div class="orbit-ring r3"></div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact" data-animate>
+      <div class="section-header">
+        <p class="eyebrow">Próximo passo</p>
+        <h2>Fale com a Singular.</h2>
+        <p class="lede">Diagnóstico gratuito para mapear desafios, propor arquitetura e iniciar a orquestração.</p>
+      </div>
+      <form class="contact-form">
+        <label>
+          Nome
+          <input type="text" name="name" placeholder="Seu nome" required>
+        </label>
+        <label>
+          Empresa
+          <input type="text" name="company" placeholder="Onde você lidera?" required>
+        </label>
+        <label>
+          E-mail Corporativo
+          <input type="email" name="email" placeholder="voce@empresa.com" required>
+        </label>
+        <label>
+          Desafio Atual
+          <textarea name="challenge" rows="3" placeholder="Conte-nos o que quer orquestrar" required></textarea>
+        </label>
+        <button type="submit" class="btn primary" data-magnetic>Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-brand">
+      <div class="brand-mark" aria-hidden="true"></div>
+      <div>
+        <p class="brand-name">Singular</p>
+        <p class="brand-slogan">Powered by Biological &amp; Artificial Intelligence.</p>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="#home">Início</a>
+      <a href="#methodology">Metodologia</a>
+      <a href="#solutions">Soluções</a>
+      <a href="#impact">Impacto</a>
+      <a href="#future">Futuro</a>
+    </div>
+    <div class="footer-cta">
+      <p>Links</p>
+      <div class="footer-actions">
+        <a href="#" class="inline-cta">LinkedIn</a>
+        <a href="#" class="inline-cta">Manifesto</a>
+      </div>
+    </div>
+    <span class="footer-note">© 2025 Singular Tech. A Inteligência, Orquestrada.</span>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
