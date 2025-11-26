@@ -1,5 +1,5 @@
 // ============================================
-// SINGULAR - INTERACTIVE SYSTEM
+// SINGULAR - INTERACTIVE SYSTEM (OPTIMIZED)
 // ============================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Device detection
   const prefersHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   const isMobile = window.innerWidth < 768;
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // ============================================
   // MOBILE MENU
@@ -40,24 +41,26 @@ document.addEventListener("DOMContentLoaded", () => {
   // SCROLL REVEAL ANIMATIONS
   // ============================================
   
-  const observerOptions = {
-    threshold: 0.15,
-    rootMargin: "0px 0px -50px 0px"
-  };
+  if (!prefersReducedMotion) {
+    const observerOptions = {
+      threshold: 0.12,
+      rootMargin: "0px 0px -40px 0px"
+    };
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-      if (entry.isIntersecting) {
-        // Stagger animation
-        setTimeout(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
           entry.target.classList.add("in-view");
-        }, index * 100);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
 
-  animateEls.forEach((el) => observer.observe(el));
+    animateEls.forEach((el) => observer.observe(el));
+  } else {
+    // Skip animations if user prefers reduced motion
+    animateEls.forEach(el => el.classList.add("in-view"));
+  }
 
   // ============================================
   // ACTIVE NAV LINK ON SCROLL
@@ -67,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let ticking = false;
 
   const updateActiveLink = () => {
-    const scrollPos = window.scrollY + 150;
+    const scrollPos = window.scrollY + 140;
     
     sections.forEach((section) => {
       const top = section.offsetTop;
@@ -91,13 +94,13 @@ document.addEventListener("DOMContentLoaded", () => {
       window.requestAnimationFrame(updateActiveLink);
       ticking = true;
     }
-  });
+  }, { passive: true });
 
   // ============================================
-  // GLASS CARD MOUSE TRACKING
+  // GLASS CARD MOUSE TRACKING (Desktop only)
   // ============================================
   
-  if (prefersHover) {
+  if (prefersHover && !isMobile) {
     glassCards.forEach((card) => {
       card.addEventListener("mousemove", (e) => {
         const rect = card.getBoundingClientRect();
@@ -110,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ============================================
-  // CUSTOM CURSOR (Desktop Only)
+  // CUSTOM CURSOR - OPTIMIZED (Desktop Only)
   // ============================================
   
   if (prefersHover && !isMobile && cursorDot && cursorRing) {
@@ -118,31 +121,42 @@ document.addEventListener("DOMContentLoaded", () => {
     let mouseY = window.innerHeight / 2;
     let ringX = mouseX;
     let ringY = mouseY;
+    let isAnimating = false;
 
     const updateCursor = (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-      cursorDot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
+      // Dot follows immediately (no lag)
+      cursorDot.style.transform = `translate(${mouseX - 3.5}px, ${mouseY - 3.5}px)`;
+      
+      // Start ring animation if not already running
+      if (!isAnimating) {
+        isAnimating = true;
+        animateRing();
+      }
     };
 
     const animateRing = () => {
-      ringX += (mouseX - ringX) * 0.15;
-      ringY += (mouseY - ringY) * 0.15;
-      cursorRing.style.transform = `translate(${ringX - 18}px, ${ringY - 18}px)`;
+      // Smooth follow with easing
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
+      
+      cursorRing.style.transform = `translate(${ringX - 16}px, ${ringY - 16}px)`;
+      
+      // Continue animation
       requestAnimationFrame(animateRing);
     };
 
-    document.addEventListener("mousemove", updateCursor);
-    animateRing();
+    document.addEventListener("mousemove", updateCursor, { passive: true });
 
-    // Magnetic effect on buttons
+    // Magnetic effect on buttons (reduced strength)
     magneticEls.forEach((el) => {
       el.addEventListener("mousemove", (e) => {
         const rect = el.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
-        const deltaX = (e.clientX - centerX) * 0.1;
-        const deltaY = (e.clientY - centerY) * 0.1;
+        const deltaX = (e.clientX - centerX) * 0.08;
+        const deltaY = (e.clientY - centerY) * 0.08;
         el.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
       });
 
@@ -158,26 +172,28 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ============================================
-  // NEURAL NETWORK CANVAS
+  // NEURAL NETWORK CANVAS - OPTIMIZED
   // ============================================
   
   const canvas = document.getElementById("neural-field");
-  if (canvas) {
-    const ctx = canvas.getContext("2d");
+  if (canvas && !prefersReducedMotion) {
+    const ctx = canvas.getContext("2d", { alpha: true });
     let nodes = [];
     let animationId;
     let width = window.innerWidth;
     let height = window.innerHeight;
+    let isTabVisible = !document.hidden;
 
+    // Reduced node count for better performance
     const getNodeCount = () => {
-      if (width < 480) return 20;
-      if (width < 768) return 35;
-      if (width < 1024) return 60;
-      return 90;
+      if (width < 480) return 15;
+      if (width < 768) return 25;
+      if (width < 1024) return 45;
+      return 70;
     };
 
-    const getSpeed = () => (width < 768 ? 0.3 : 0.5);
-    const getConnectionDistance = () => (width < 768 ? 100 : 140);
+    const getSpeed = () => (width < 768 ? 0.25 : 0.4);
+    const getConnectionDistance = () => (width < 768 ? 90 : 120);
 
     const resize = () => {
       width = window.innerWidth;
@@ -196,11 +212,13 @@ document.addEventListener("DOMContentLoaded", () => {
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * speed,
         vy: (Math.random() - 0.5) * speed,
-        radius: Math.random() * 1.5 + 0.8,
+        radius: Math.random() * 1.2 + 0.6,
       }));
     };
 
     const draw = () => {
+      if (!isTabVisible) return;
+      
       ctx.clearRect(0, 0, width, height);
       const connectionDist = getConnectionDistance();
 
@@ -208,16 +226,19 @@ document.addEventListener("DOMContentLoaded", () => {
       for (let i = 0; i < nodes.length; i++) {
         const nodeA = nodes[i];
         
+        // Only check nearby nodes (performance optimization)
         for (let j = i + 1; j < nodes.length; j++) {
           const nodeB = nodes[j];
           const dx = nodeA.x - nodeB.x;
           const dy = nodeA.y - nodeB.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
+          const distSquared = dx * dx + dy * dy;
+          const distThreshold = connectionDist * connectionDist;
 
-          if (distance < connectionDist) {
-            const opacity = (1 - distance / connectionDist) * 0.35;
+          if (distSquared < distThreshold) {
+            const distance = Math.sqrt(distSquared);
+            const opacity = (1 - distance / connectionDist) * 0.3;
             ctx.strokeStyle = `rgba(96, 165, 250, ${opacity})`;
-            ctx.lineWidth = 0.8;
+            ctx.lineWidth = 0.7;
             ctx.beginPath();
             ctx.moveTo(nodeA.x, nodeA.y);
             ctx.lineTo(nodeB.x, nodeB.y);
@@ -236,19 +257,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (node.x < 0 || node.x > width) node.vx *= -1;
         if (node.y < 0 || node.y > height) node.vy *= -1;
 
-        // Draw node
+        // Draw node (simplified, no glow for performance)
         ctx.beginPath();
-        ctx.fillStyle = "rgba(96, 165, 250, 0.75)";
+        ctx.fillStyle = "rgba(96, 165, 250, 0.7)";
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Add glow
-        ctx.beginPath();
-        const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, node.radius * 3);
-        gradient.addColorStop(0, "rgba(96, 165, 250, 0.2)");
-        gradient.addColorStop(1, "rgba(96, 165, 250, 0)");
-        ctx.fillStyle = gradient;
-        ctx.arc(node.x, node.y, node.radius * 3, 0, Math.PI * 2);
         ctx.fill();
       });
 
@@ -263,15 +275,16 @@ document.addEventListener("DOMContentLoaded", () => {
     let resizeTimeout;
     window.addEventListener("resize", () => {
       clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(resize, 200);
-    });
+      resizeTimeout = setTimeout(resize, 250);
+    }, { passive: true });
 
-    // Pause animation when tab is not visible
+    // Pause animation when tab is not visible (major performance boost)
     document.addEventListener("visibilitychange", () => {
-      if (document.hidden) {
-        cancelAnimationFrame(animationId);
-      } else {
+      isTabVisible = !document.hidden;
+      if (isTabVisible) {
         draw();
+      } else {
+        cancelAnimationFrame(animationId);
       }
     });
   }
@@ -296,6 +309,13 @@ document.addEventListener("DOMContentLoaded", () => {
     
     try {
       // TODO: Integrate with Make.com webhook or your backend
+      // Example:
+      // const response = await fetch('YOUR_WEBHOOK_URL', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(data)
+      // });
+      
       console.log("Form data:", data);
       
       // Simulate API call
@@ -340,7 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const target = document.querySelector(href);
       
       if (target) {
-        const headerOffset = 100;
+        const headerOffset = 90;
         const elementPosition = target.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
@@ -353,26 +373,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ============================================
-  // PERFORMANCE: Reduce animations on low-end devices
-  // ============================================
-  
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  
-  if (prefersReducedMotion) {
-    document.documentElement.style.setProperty("--animation-duration", "0.01ms");
-    animateEls.forEach(el => {
-      el.style.transition = "none";
-      el.classList.add("in-view");
-    });
-  }
-
-  // ============================================
   // CONSOLE BRANDING
   // ============================================
   
   console.log(
     "%cSingular%c\nA singularidade da IA aplicada ao seu negócio.\n\nInteressado em trabalhar conosco? Fale com a gente!",
-    "font-size: 32px; font-weight: bold; background: linear-gradient(120deg, #2563eb, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; padding: 10px 0;",
-    "font-size: 14px; color: #94a3b8; line-height: 1.6;"
+    "font-size: 28px; font-weight: bold; background: linear-gradient(120deg, #2563eb, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; padding: 8px 0;",
+    "font-size: 13px; color: #94a3b8; line-height: 1.6;"
   );
 });
