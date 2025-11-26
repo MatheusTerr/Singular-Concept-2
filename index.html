@@ -40,6 +40,7 @@
       <a href="#home" class="nav-link">Início</a>
       <a href="#solutions" class="nav-link">Soluções</a>
       <a href="#process" class="nav-link">Como Funciona</a>
+      <a href="#quem-somos" class="nav-link">Quem Somos</a>
       <a href="#contact" class="nav-link nav-cta">Contato</a>
     </nav>
     <button class="menu-toggle" aria-label="Abrir menu">
@@ -48,76 +49,71 @@
   </header>
 
   <main class="page">
-    <section id="home" class="section hero" data-animate>
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <div class="pill">Diagnóstico e entrega em 2–3 semanas</div>
-          <h1>Automatize processos manuais da sua empresa com IA — sem contratar equipe técnica.</h1>
-          <p class="lede">Diagnosticamos onde você perde tempo, implementamos agentes de IA customizados e treinamos sua equipe. Resultados em 2–3 semanas.</p>
-          <div class="cta-row">
-            <a class="btn primary" data-magnetic href="#contact">Agendar Diagnóstico Grátis de 30 min</a>
+    <section id="home" class="section hero hero-refresh" data-animate>
+      <div class="hero-shell">
+        <div class="hero-columns">
+          <div class="hero-left">
+            <div class="pill hero-pill">🚀 Implementação em 2–3 semanas</div>
+            <h1 class="hero-title">
+              <span>IA que funciona.</span>
+              <span>Sem contratação.</span>
+              <span class="text-gradient-blue">Sem complicação.</span>
+            </h1>
+            <p class="hero-subtitle">
+              Três passos: diagnóstico grátis, implementação completa, equipe treinada. De empresa manual para automatizada em 3 semanas.
+            </p>
+            <div class="cta-row">
+              <a
+                class="btn primary hero-btn"
+                data-magnetic
+                href="#contact"
+                onmouseenter="document.body.classList.add('hovering')"
+                onmouseleave="document.body.classList.remove('hovering')"
+              >
+                Diagnóstico Grátis → 30 min
+              </a>
+            </div>
           </div>
-          <div class="hero-points">
-            <div class="point">
-              <span class="dot tiny"></span>
-              Economize 10+ horas por semana automatizando tarefas repetitivas.
-            </div>
-            <div class="point">
-              <span class="dot tiny"></span>
-              Sem contratar ou treinar equipe técnica interna.
-            </div>
-            <div class="point">
-              <span class="dot tiny"></span>
-              Implementação guiada com governança e dados blindados.
-            </div>
-          </div>
-        </div>
-        <div class="hero-visual" aria-hidden="true">
-          <div class="orbital">
-            <div class="orb-core"></div>
-            <div class="ring ring-1"></div>
-            <div class="ring ring-2"></div>
-            <div class="ring ring-3"></div>
-            <div class="satellite s-1"></div>
-            <div class="satellite s-2"></div>
-            <div class="satellite s-3"></div>
-          </div>
-          <div class="stack">
-            <div class="stack-card">
-              <p class="label">Protocolo</p>
-              <p class="title">Diagnóstico Rápido</p>
-              <p class="desc">Identificamos gargalos e priorizamos o que gera ROI em semanas, não meses.</p>
-            </div>
-            <div class="stack-card">
-              <p class="label">Operação</p>
-              <p class="title">Automação com Governança</p>
-              <p class="desc">Agentes com guardrails, trilha de auditoria e consensos multi-modelos.</p>
-            </div>
-            <div class="stack-card">
-              <p class="label">Sigilo</p>
-              <p class="title">Dados Blindados</p>
-              <p class="desc">Segredos isolados. Nenhum dado alimenta modelos públicos.</p>
-            </div>
+          <div class="hero-right" aria-hidden="true">
+            <svg class="hero-orb-svg" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="150" cy="150" r="120" stroke="#3b82f6" stroke-width="1" opacity="0.2" />
+              <circle cx="150" cy="150" r="90" stroke="#3b82f6" stroke-width="1" opacity="0.3" />
+              <circle cx="150" cy="150" r="60" stroke="#3b82f6" stroke-width="2" opacity="0.5" />
+              <defs>
+                <radialGradient id="sphereGradient" cx="30%" cy="30%">
+                  <stop offset="0%" stop-color="#60a5fa" stop-opacity="1" />
+                  <stop offset="100%" stop-color="#1e40af" stop-opacity="1" />
+                </radialGradient>
+              </defs>
+              <circle cx="150" cy="150" r="50" fill="url(#sphereGradient)" />
+              <circle cx="130" cy="130" r="15" fill="white" opacity="0.5" />
+              <circle cx="150" cy="45" r="5" fill="#3b82f6" />
+              <circle cx="245" cy="150" r="5" fill="#3b82f6" />
+              <circle cx="150" cy="255" r="5" fill="#3b82f6" />
+              <circle cx="55" cy="150" r="5" fill="#3b82f6" />
+            </svg>
           </div>
         </div>
       </div>
-      <div class="marquee">
-        <div class="marquee-track">
-          <span>Automação de Atendimento</span>
-          <span>Relatórios com IA</span>
-          <span>Assistente Executivo</span>
-          <span>Implementação em 2–3 semanas</span>
-          <span>Economia de 10h/semana</span>
-          <span>Dados blindados</span>
-        </div>
-        <div class="marquee-track" aria-hidden="true">
-          <span>Automação de Atendimento</span>
-          <span>Relatórios com IA</span>
-          <span>Assistente Executivo</span>
-          <span>Implementação em 2–3 semanas</span>
-          <span>Economia de 10h/semana</span>
-          <span>Dados blindados</span>
-        </div>
+    </section>
+
+    <section class="section hero-features" data-animate>
+      <div class="hero-features-grid">
+        <article class="glass-card feature-card">
+          <div class="feature-icon">✅</div>
+          <h3>100% Implementado</h3>
+          <p>Você não faz nada. A gente entrega pronto.</p>
+        </article>
+        <article class="glass-card feature-card">
+          <div class="feature-icon">⏱️</div>
+          <h3>2–3 Semanas</h3>
+          <p>Projeto fechado, timeline clara.</p>
+        </article>
+        <article class="glass-card feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Dados Seguros</h3>
+          <p>API isolada, governança completa.</p>
+        </article>
       </div>
     </section>
 
@@ -259,6 +255,70 @@
           <span class="chip glow">API isolada</span>
           <span class="chip glow">Trilha de auditoria</span>
           <span class="chip glow">Segurança e compliance</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="quem-somos" class="section about" data-animate>
+      <div class="about-header">
+        <h2>Quem é Singular</h2>
+        <p class="lede">Consultoria focada em transformar PMEs com automação real.</p>
+      </div>
+
+      <div class="about-story">
+        <h3>Nossa história</h3>
+        <p>
+          A Singular nasceu da frustração de ver empresas perderem horas — e dinheiro — em tarefas que máquinas fazem melhor.
+        </p>
+        <p>
+          Em 2025, formalizamos a Singular: consultoria 100% focada em implementar automações que eliminam tempo perdido e reduzem custo operacional de verdade.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <article class="glass-card">
+          <h4 class="about-label">🎯 MISSÃO</h4>
+          <p class="about-copy">Democratizar acesso a automação de IA para PMEs. Sem ser tech. Sem ser caro.</p>
+        </article>
+        <article class="glass-card">
+          <h4 class="about-label">🔮 VISÃO</h4>
+          <p class="about-copy">
+            Um futuro onde empresas eliminam trabalho repetitivo e sua equipe se dedica ao que realmente importa.
+          </p>
+        </article>
+        <article class="glass-card">
+          <h4 class="about-label">💎 VALORES</h4>
+          <p class="about-copy">Honestidade. Simplicidade. Resultado. Sem jargão. Sem promessa vazia.</p>
+        </article>
+      </div>
+
+      <div class="about-why">
+        <h3>Por que escolher Singular</h3>
+        <div class="about-why-grid">
+          <article
+            class="glass-card about-why-card"
+            onmouseenter="document.body.classList.add('hovering')"
+            onmouseleave="document.body.classList.remove('hovering')"
+          >
+            <h5>✅ Implementação Real</h5>
+            <p>Você recebe automação funcionando, testada, pronta para usar.</p>
+          </article>
+          <article
+            class="glass-card about-why-card"
+            onmouseenter="document.body.classList.add('hovering')"
+            onmouseleave="document.body.classList.remove('hovering')"
+          >
+            <h5>✅ Transparência Total</h5>
+            <p>Diagnóstico grátis. Proposta clara. Sem surpresas de preço.</p>
+          </article>
+          <article
+            class="glass-card about-why-card"
+            onmouseenter="document.body.classList.add('hovering')"
+            onmouseleave="document.body.classList.remove('hovering')"
+          >
+            <h5>✅ Suporte Real</h5>
+            <p>Acompanhamos implementação, treinamos equipe, fazemos ajustes.</p>
+          </article>
         </div>
       </div>
     </section>
