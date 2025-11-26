@@ -1,167 +1,378 @@
+// ============================================
+// SINGULAR - INTERACTIVE SYSTEM
+// ============================================
+
 document.addEventListener("DOMContentLoaded", () => {
+  // Elements
   const nav = document.querySelector(".nav");
   const menuToggle = document.querySelector(".menu-toggle");
   const navLinks = document.querySelectorAll(".nav-link");
   const animateEls = document.querySelectorAll("[data-animate]");
   const magneticEls = document.querySelectorAll("[data-magnetic]");
+  const glassCards = document.querySelectorAll(".glass-card");
   const cursorDot = document.querySelector(".cursor-dot");
   const cursorRing = document.querySelector(".cursor-ring");
+  const contactForm = document.querySelector(".contact-form");
+  
+  // Device detection
   const prefersHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const isMobile = window.innerWidth < 768;
 
-  menuToggle?.addEventListener("click", () => nav?.classList.toggle("open"));
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => nav?.classList.remove("open"));
-    link.addEventListener("mouseenter", () => document.body.classList.add("hovering"));
-    link.addEventListener("mouseleave", () => document.body.classList.remove("hovering"));
+  // ============================================
+  // MOBILE MENU
+  // ============================================
+  
+  menuToggle?.addEventListener("click", () => {
+    nav?.classList.toggle("open");
+    menuToggle.classList.toggle("active");
+    document.body.style.overflow = nav?.classList.contains("open") ? "hidden" : "";
   });
 
-  // Reveal on scroll
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add("in-view");
-      });
-    },
-    { threshold: 0.3 }
-  );
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      nav?.classList.remove("open");
+      menuToggle?.classList.remove("active");
+      document.body.style.overflow = "";
+    });
+  });
+
+  // ============================================
+  // SCROLL REVEAL ANIMATIONS
+  // ============================================
+  
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: "0px 0px -50px 0px"
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        // Stagger animation
+        setTimeout(() => {
+          entry.target.classList.add("in-view");
+        }, index * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
   animateEls.forEach((el) => observer.observe(el));
 
-  // Active link while scrolling
+  // ============================================
+  // ACTIVE NAV LINK ON SCROLL
+  // ============================================
+  
   const sections = Array.from(document.querySelectorAll("section[id]"));
-  window.addEventListener("scroll", () => {
-    const scrollPos = window.scrollY + 140;
+  let ticking = false;
+
+  const updateActiveLink = () => {
+    const scrollPos = window.scrollY + 150;
+    
     sections.forEach((section) => {
       const top = section.offsetTop;
       const bottom = top + section.offsetHeight;
       const id = section.getAttribute("id");
       if (!id) return;
-      const link = document.querySelector(`.nav a[href="#${id}"]`);
+      
+      const link = document.querySelector(`.nav-link[href="#${id}"]`);
+      
       if (scrollPos >= top && scrollPos < bottom) {
+        navLinks.forEach(l => l.classList.remove("active"));
         link?.classList.add("active");
-      } else {
-        link?.classList.remove("active");
       }
     });
+    
+    ticking = false;
+  };
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateActiveLink);
+      ticking = true;
+    }
   });
 
-  // Custom cursor + magnetic buttons (desktop only)
-  if (prefersHover && cursorDot && cursorRing) {
-    let x = window.innerWidth / 2;
-    let y = window.innerHeight / 2;
-    let ringX = x;
-    let ringY = y;
-
-    const move = (event) => {
-      x = event.clientX;
-      y = event.clientY;
-      cursorDot.style.transform = `translate(${x}px, ${y}px)`;
-    };
-
-    const render = () => {
-      ringX += (x - ringX) * 0.16;
-      ringY += (y - ringY) * 0.16;
-      cursorRing.style.transform = `translate(${ringX - 18}px, ${ringY - 18}px)`;
-      requestAnimationFrame(render);
-    };
-
-    window.addEventListener("mousemove", move);
-    render();
-
-    magneticEls.forEach((el) => {
-      el.addEventListener("mousemove", (event) => {
-        const rect = el.getBoundingClientRect();
-        const mx = event.clientX - (rect.left + rect.width / 2);
-        const my = event.clientY - (rect.top + rect.height / 2);
-        el.style.transform = `translate(${mx * 0.08}px, ${my * 0.08}px)`;
+  // ============================================
+  // GLASS CARD MOUSE TRACKING
+  // ============================================
+  
+  if (prefersHover) {
+    glassCards.forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty("--mx", `${x}%`);
+        card.style.setProperty("--my", `${y}%`);
       });
-      el.addEventListener("mouseenter", () => document.body.classList.add("hovering"));
+    });
+  }
+
+  // ============================================
+  // CUSTOM CURSOR (Desktop Only)
+  // ============================================
+  
+  if (prefersHover && !isMobile && cursorDot && cursorRing) {
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
+
+    const updateCursor = (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursorDot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
+    };
+
+    const animateRing = () => {
+      ringX += (mouseX - ringX) * 0.15;
+      ringY += (mouseY - ringY) * 0.15;
+      cursorRing.style.transform = `translate(${ringX - 18}px, ${ringY - 18}px)`;
+      requestAnimationFrame(animateRing);
+    };
+
+    document.addEventListener("mousemove", updateCursor);
+    animateRing();
+
+    // Magnetic effect on buttons
+    magneticEls.forEach((el) => {
+      el.addEventListener("mousemove", (e) => {
+        const rect = el.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const deltaX = (e.clientX - centerX) * 0.1;
+        const deltaY = (e.clientY - centerY) * 0.1;
+        el.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+      });
+
+      el.addEventListener("mouseenter", () => {
+        document.body.classList.add("hovering");
+      });
+
       el.addEventListener("mouseleave", () => {
         el.style.transform = "";
         document.body.classList.remove("hovering");
       });
     });
-  } else {
-    cursorDot?.classList.add("hide");
-    cursorRing?.classList.add("hide");
   }
 
-  // Neural field (desktop 80-100 nós, mobile 20-25)
+  // ============================================
+  // NEURAL NETWORK CANVAS
+  // ============================================
+  
   const canvas = document.getElementById("neural-field");
   if (canvas) {
     const ctx = canvas.getContext("2d");
     let nodes = [];
+    let animationId;
     let width = window.innerWidth;
     let height = window.innerHeight;
-    let nodeCount = getNodeCount();
+
+    const getNodeCount = () => {
+      if (width < 480) return 20;
+      if (width < 768) return 35;
+      if (width < 1024) return 60;
+      return 90;
+    };
+
+    const getSpeed = () => (width < 768 ? 0.3 : 0.5);
+    const getConnectionDistance = () => (width < 768 ? 100 : 140);
 
     const resize = () => {
       width = window.innerWidth;
       height = window.innerHeight;
       canvas.width = width;
       canvas.height = height;
-      const nextCount = getNodeCount();
-      if (nextCount !== nodeCount) {
-        nodeCount = nextCount;
-        initNodes();
-      }
+      initNodes();
     };
 
-    const getSpeed = () => (window.innerWidth < 820 ? 0.4 : 0.6);
-    const getNodeCount = () => (window.innerWidth < 820 ? 24 : 92);
-
     const initNodes = () => {
+      const nodeCount = getNodeCount();
+      const speed = getSpeed();
+      
       nodes = Array.from({ length: nodeCount }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * getSpeed(),
-        vy: (Math.random() - 0.5) * getSpeed(),
-        r: Math.random() * 2 + 1,
+        vx: (Math.random() - 0.5) * speed,
+        vy: (Math.random() - 0.5) * speed,
+        radius: Math.random() * 1.5 + 0.8,
       }));
     };
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
+      const connectionDist = getConnectionDistance();
+
+      // Draw connections first (behind nodes)
       for (let i = 0; i < nodes.length; i++) {
-        const a = nodes[i];
-        a.x += a.vx;
-        a.y += a.vy;
-        if (a.x < 0 || a.x > width) a.vx *= -1;
-        if (a.y < 0 || a.y > height) a.vy *= -1;
-
-        ctx.beginPath();
-        ctx.fillStyle = "rgba(96,165,250,0.8)";
-        ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
-        ctx.fill();
-
+        const nodeA = nodes[i];
+        
         for (let j = i + 1; j < nodes.length; j++) {
-          const b = nodes[j];
-          const dx = a.x - b.x;
-          const dy = a.y - b.y;
-          const dist = Math.hypot(dx, dy);
-          const threshold = window.innerWidth < 820 ? 110 : 150;
-          if (dist < threshold) {
-            const alpha = 1 - dist / threshold;
-            ctx.strokeStyle = `rgba(96,165,250,${alpha * 0.4})`;
-            ctx.lineWidth = 1;
+          const nodeB = nodes[j];
+          const dx = nodeA.x - nodeB.x;
+          const dy = nodeA.y - nodeB.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < connectionDist) {
+            const opacity = (1 - distance / connectionDist) * 0.35;
+            ctx.strokeStyle = `rgba(96, 165, 250, ${opacity})`;
+            ctx.lineWidth = 0.8;
             ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
+            ctx.moveTo(nodeA.x, nodeA.y);
+            ctx.lineTo(nodeB.x, nodeB.y);
             ctx.stroke();
           }
         }
       }
-      requestAnimationFrame(draw);
+
+      // Draw and update nodes
+      nodes.forEach((node) => {
+        // Update position
+        node.x += node.vx;
+        node.y += node.vy;
+
+        // Bounce off edges
+        if (node.x < 0 || node.x > width) node.vx *= -1;
+        if (node.y < 0 || node.y > height) node.vy *= -1;
+
+        // Draw node
+        ctx.beginPath();
+        ctx.fillStyle = "rgba(96, 165, 250, 0.75)";
+        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Add glow
+        ctx.beginPath();
+        const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, node.radius * 3);
+        gradient.addColorStop(0, "rgba(96, 165, 250, 0.2)");
+        gradient.addColorStop(1, "rgba(96, 165, 250, 0)");
+        ctx.fillStyle = gradient;
+        ctx.arc(node.x, node.y, node.radius * 3, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      animationId = requestAnimationFrame(draw);
     };
 
+    // Initialize
     resize();
-    initNodes();
     draw();
-    window.addEventListener("resize", resize);
+
+    // Debounced resize
+    let resizeTimeout;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(resize, 200);
+    });
+
+    // Pause animation when tab is not visible
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        cancelAnimationFrame(animationId);
+      } else {
+        draw();
+      }
+    });
   }
 
-  const contactForm = document.querySelector(".contact-form");
-  contactForm?.addEventListener("submit", (event) => {
-    event.preventDefault();
-    alert("Recebemos seu diagnóstico. Respondemos em até 24h.");
+  // ============================================
+  // FORM HANDLING
+  // ============================================
+  
+  contactForm?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    
+    const submitBtn = contactForm.querySelector("button[type='submit']");
+    const originalText = submitBtn.textContent;
+    
+    // Disable button and show loading state
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Enviando...";
+    
+    // Collect form data
+    const formData = new FormData(contactForm);
+    const data = Object.fromEntries(formData.entries());
+    
+    try {
+      // TODO: Integrate with Make.com webhook or your backend
+      console.log("Form data:", data);
+      
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Show success message
+      submitBtn.textContent = "✓ Solicitação Enviada!";
+      submitBtn.style.background = "linear-gradient(120deg, #10b981, #34d399)";
+      
+      // Reset form
+      setTimeout(() => {
+        contactForm.reset();
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+        submitBtn.style.background = "";
+        
+        // Show custom alert
+        alert("✅ Recebemos sua solicitação!\n\nEntraremos em contato em até 24 horas com perguntas personalizadas sobre seu negócio.");
+      }, 2000);
+      
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      submitBtn.textContent = "⚠️ Erro ao enviar";
+      submitBtn.disabled = false;
+      
+      setTimeout(() => {
+        submitBtn.textContent = originalText;
+      }, 3000);
+    }
   });
+
+  // ============================================
+  // SMOOTH SCROLL FOR ANCHOR LINKS
+  // ============================================
+  
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function(e) {
+      const href = this.getAttribute("href");
+      if (href === "#") return;
+      
+      e.preventDefault();
+      const target = document.querySelector(href);
+      
+      if (target) {
+        const headerOffset = 100;
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
+    });
+  });
+
+  // ============================================
+  // PERFORMANCE: Reduce animations on low-end devices
+  // ============================================
+  
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  
+  if (prefersReducedMotion) {
+    document.documentElement.style.setProperty("--animation-duration", "0.01ms");
+    animateEls.forEach(el => {
+      el.style.transition = "none";
+      el.classList.add("in-view");
+    });
+  }
+
+  // ============================================
+  // CONSOLE BRANDING
+  // ============================================
+  
+  console.log(
+    "%cSingular%c\nA singularidade da IA aplicada ao seu negócio.\n\nInteressado em trabalhar conosco? Fale com a gente!",
+    "font-size: 32px; font-weight: bold; background: linear-gradient(120deg, #2563eb, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; padding: 10px 0;",
+    "font-size: 14px; color: #94a3b8; line-height: 1.6;"
+  );
 });
