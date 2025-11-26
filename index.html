@@ -3,19 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Singular - Automação de processos com IA</title>
+  <meta name="description" content="Singular - A singularidade da IA aplicada ao seu negócio. Automações personalizadas para empresas que querem escalar sem contratar equipe técnica.">
+  <meta name="keywords" content="automação, inteligência artificial, IA, consultoria, agentes autônomos, whatsapp bot, relatórios automáticos">
+  <title>Singular - A Singularidade da IA Aplicada ao Seu Negócio</title>
+  
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <!-- Background Elements -->
   <canvas id="neural-field" aria-hidden="true"></canvas>
   <div class="bg-gradient"></div>
   <div class="noise"></div>
+  
+  <!-- Custom Cursor (Desktop Only) -->
   <div class="cursor-dot" aria-hidden="true"></div>
   <div class="cursor-ring" aria-hidden="true"></div>
 
+  <!-- Header Navigation -->
   <header class="site-header glass">
     <div class="brand">
       <div class="brand-mark" aria-hidden="true">
@@ -33,14 +42,14 @@
       </div>
       <div class="brand-text">
         <span class="brand-name">Singular</span>
-        <span class="brand-slogan">Consultoria e implementação de IA.</span>
+        <span class="brand-slogan">A singularidade da IA aplicada ao seu negócio.</span>
       </div>
     </div>
     <nav class="nav">
       <a href="#home" class="nav-link">Início</a>
       <a href="#solutions" class="nav-link">Soluções</a>
       <a href="#process" class="nav-link">Como Funciona</a>
-      <a href="#quem-somos" class="nav-link">Quem Somos</a>
+      <a href="#about" class="nav-link">Sobre Nós</a>
       <a href="#contact" class="nav-link nav-cta">Contato</a>
     </nav>
     <button class="menu-toggle" aria-label="Abrir menu">
@@ -48,337 +57,396 @@
     </button>
   </header>
 
+  <!-- Main Content -->
   <main class="page">
-    <section id="home" class="section hero hero-refresh" data-animate>
-      <div class="hero-shell">
-        <div class="hero-columns">
-          <div class="hero-left">
-            <div class="pill hero-pill">🚀 Implementação em 2–3 semanas</div>
-            <h1 class="hero-title">
-              <span>IA que funciona.</span>
-              <span>Sem contratação.</span>
-              <span class="text-gradient-blue">Sem complicação.</span>
-            </h1>
-            <p class="hero-subtitle">
-              Três passos: diagnóstico grátis, implementação completa, equipe treinada. De empresa manual para automatizada em 3 semanas.
-            </p>
-            <div class="cta-row">
-              <a
-                class="btn primary hero-btn"
-                data-magnetic
-                href="#contact"
-                onmouseenter="document.body.classList.add('hovering')"
-                onmouseleave="document.body.classList.remove('hovering')"
-              >
-                Diagnóstico Grátis → 30 min
-              </a>
+    
+    <!-- Hero Section -->
+    <section id="home" class="section hero" data-animate>
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="pill">Automações sob medida</div>
+          <h1 class="hero-title">
+            A <span class="text-gradient">singularidade</span> da IA<br>aplicada ao seu negócio.
+          </h1>
+          <p class="hero-subtitle">
+            Transformamos processos manuais em sistemas inteligentes. Sem equipe técnica. Sem complicação. Apenas resultados.
+          </p>
+          <div class="cta-row">
+            <a class="btn primary" data-magnetic href="#contact">
+              Solicitar Diagnóstico Grátis
+            </a>
+            <a class="btn ghost" data-magnetic href="#solutions">
+              Conhecer Soluções
+            </a>
+          </div>
+          <div class="hero-trust">
+            <div class="trust-item">
+              <span class="trust-icon">✓</span>
+              <span>Soluções personalizadas</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon">✓</span>
+              <span>Dados 100% protegidos</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon">✓</span>
+              <span>Suporte contínuo incluso</span>
             </div>
           </div>
-          <div class="hero-right" aria-hidden="true">
-            <svg class="hero-orb-svg" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="150" cy="150" r="120" stroke="#3b82f6" stroke-width="1" opacity="0.2" />
-              <circle cx="150" cy="150" r="90" stroke="#3b82f6" stroke-width="1" opacity="0.3" />
-              <circle cx="150" cy="150" r="60" stroke="#3b82f6" stroke-width="2" opacity="0.5" />
-              <defs>
-                <radialGradient id="sphereGradient" cx="30%" cy="30%">
-                  <stop offset="0%" stop-color="#60a5fa" stop-opacity="1" />
-                  <stop offset="100%" stop-color="#1e40af" stop-opacity="1" />
-                </radialGradient>
-              </defs>
-              <circle cx="150" cy="150" r="50" fill="url(#sphereGradient)" />
-              <circle cx="130" cy="130" r="15" fill="white" opacity="0.5" />
-              <circle cx="150" cy="45" r="5" fill="#3b82f6" />
-              <circle cx="245" cy="150" r="5" fill="#3b82f6" />
-              <circle cx="150" cy="255" r="5" fill="#3b82f6" />
-              <circle cx="55" cy="150" r="5" fill="#3b82f6" />
-            </svg>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="orbital">
+            <div class="orb-core"></div>
+            <div class="ring ring-1"></div>
+            <div class="ring ring-2"></div>
+            <div class="ring ring-3"></div>
+            <div class="satellite s-1"></div>
+            <div class="satellite s-2"></div>
+            <div class="satellite s-3"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section hero-features" data-animate>
-      <div class="hero-features-grid">
-        <article class="glass-card feature-card">
-          <div class="feature-icon">✅</div>
-          <h3>100% Implementado</h3>
-          <p>Você não faz nada. A gente entrega pronto.</p>
-        </article>
-        <article class="glass-card feature-card">
-          <div class="feature-icon">⏱️</div>
-          <h3>2–3 Semanas</h3>
-          <p>Projeto fechado, timeline clara.</p>
-        </article>
-        <article class="glass-card feature-card">
-          <div class="feature-icon">🔒</div>
-          <h3>Dados Seguros</h3>
-          <p>API isolada, governança completa.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="methodology" class="section methodology" data-animate>
+    <!-- Para Quem Serve -->
+    <section class="section who-section" data-animate>
       <div class="section-header">
-        <p class="eyebrow">Decisão</p>
-        <h2>Por que automatizar agora?</h2>
-        <p class="lede">Argumentos claros para agir já — com números e urgência.</p>
+        <p class="eyebrow">Para quem serve</p>
+        <h2>Empresas que querem escalar sem aumentar custos.</h2>
+        <p class="lede">Se você perde tempo em tarefas repetitivas, nós temos a solução.</p>
       </div>
-      <div class="method-grid">
-        <article class="glass-card">
-          <p class="tag">Tempo</p>
-          <h3>Seu time gasta 40% do tempo em tarefas repetitivas.</h3>
-          <p class="copy">Responder e-mails, preencher planilhas, atualizar CRM, gerar relatórios — tudo isso pode ser automatizado com IA.</p>
+      <div class="who-grid">
+        <article class="glass-card who-card">
+          <div class="who-icon">👔</div>
+          <h3>Pequenos Negócios</h3>
+          <p>E-commerces, prestadores de serviço e consultorias que precisam otimizar processos sem contratar.</p>
         </article>
-        <article class="glass-card">
-          <p class="tag">Custo</p>
-          <h3>IA já é mais barata que contratar.</h3>
-          <p class="copy">Um agente de IA custa R$ 300–800/mês. Um assistente júnior custa R$ 2.500+ salário + encargos. Sem férias, sem turnover.</p>
+        <article class="glass-card who-card">
+          <div class="who-icon">⚡</div>
+          <h3>Equipes Enxutas</h3>
+          <p>Times pequenos que fazem muito e querem automatizar o que consome tempo demais.</p>
         </article>
-        <article class="glass-card">
-          <p class="tag">Vantagem</p>
-          <h3>Empresas que não automatizam perdem mercado.</h3>
-          <p class="copy">Concorrentes usam IA para atender mais rápido, vender mais e operar com custo menor. Esperar é perder competitividade.</p>
+        <article class="glass-card who-card">
+          <div class="who-icon">🎯</div>
+          <h3>Líderes Estratégicos</h3>
+          <p>Founders, CEOs e gestores que querem focar no que importa, não em tarefas manuais.</p>
         </article>
       </div>
     </section>
 
+    <!-- Soluções -->
     <section id="solutions" class="section solutions" data-animate>
       <div class="section-header">
-        <p class="eyebrow">Soluções</p>
-        <h2>Como podemos ajudar (escolha 1 ou combine).</h2>
-        <p class="lede">Produtos claros, com preço, prazo e resultado esperado.</p>
+        <p class="eyebrow">Nossas Soluções</p>
+        <h2>Automações que resolvem problemas reais.</h2>
+        <p class="lede">Escolha uma ou combine. Cada projeto é único e Singular.</p>
       </div>
-      <div class="solution-grid">
+      <div class="solutions-grid">
+        
+        <!-- Solução 1: Atendimento Inteligente -->
         <article class="solution-card glass-card" data-magnetic>
-          <div class="icon emoji" aria-hidden="true">💬</div>
-          <p class="tag">Automação de Atendimento</p>
-          <h3>Atendimento Automático por WhatsApp/E-mail.</h3>
-          <p class="copy">Agente de IA que responde clientes 24/7, qualifica leads, agenda reuniões e responde FAQ. Integrado com seu CRM ou planilha.</p>
-          <ul class="solution-meta">
-            <li><strong>Ideal para:</strong> e-commerces, infoprodutores, prestadores de serviço, clínicas.</li>
-            <li><strong>Resultado típico:</strong> economiza 8–12h/semana da equipe de atendimento.</li>
-            <li><strong>Prazo:</strong> 2–3 semanas.</li>
-            <li><strong>Preço:</strong> a partir de R$ 1.500 (setup) + R$ 400/mês (manutenção).</li>
-          </ul>
-          <a class="btn ghost small" data-magnetic href="#contact">Quero saber mais</a>
+          <div class="solution-header">
+            <div class="solution-icon">💬</div>
+            <span class="solution-tag">Atendimento</span>
+          </div>
+          <h3>Atendimento Inteligente 24/7</h3>
+          <p class="solution-desc">
+            Sistema de IA que conversa com seus clientes via WhatsApp ou email, responde perguntas frequentes, qualifica leads e agenda reuniões automaticamente.
+          </p>
+          <div class="solution-benefits">
+            <p class="benefit-title">Ideal para:</p>
+            <ul>
+              <li>E-commerces com alto volume de dúvidas</li>
+              <li>Infoprodutores e consultores</li>
+              <li>Clínicas e prestadores de serviço</li>
+            </ul>
+          </div>
+          <div class="solution-results">
+            <div class="result-item">
+              <strong>8-12h/semana</strong>
+              <span>economizadas</span>
+            </div>
+            <div class="result-item">
+              <strong>24/7</strong>
+              <span>disponibilidade</span>
+            </div>
+          </div>
+          <a class="btn ghost small" data-magnetic href="#contact">Solicitar Orçamento</a>
         </article>
+
+        <!-- Solução 2: Inteligência Operacional -->
         <article class="solution-card glass-card" data-magnetic>
-          <div class="icon emoji" aria-hidden="true">📊</div>
-          <p class="tag">Operação e BI</p>
-          <h3>Relatórios Automáticos com IA.</h3>
-          <p class="copy">Sistema que coleta dados de vendas, finanças e operações, gera relatórios semanais formatados e envia por e-mail ou Slack. Você acorda com o resumo pronto.</p>
-          <ul class="solution-meta">
-            <li><strong>Ideal para:</strong> gestores, founders, diretores de operações.</li>
-            <li><strong>Resultado típico:</strong> economiza 5–8h/semana de análise manual de dados.</li>
-            <li><strong>Prazo:</strong> 2–3 semanas.</li>
-            <li><strong>Preço:</strong> a partir de R$ 1.200 (setup) + R$ 400/mês (manutenção).</li>
-          </ul>
-          <a class="btn ghost small" data-magnetic href="#contact">Quero saber mais</a>
+          <div class="solution-header">
+            <div class="solution-icon">📊</div>
+            <span class="solution-tag">Operações</span>
+          </div>
+          <h3>Inteligência Operacional</h3>
+          <p class="solution-desc">
+            Automação que coleta dados de múltiplas fontes, analisa padrões e gera relatórios executivos formatados. Você acorda com insights prontos no email.
+          </p>
+          <div class="solution-benefits">
+            <p class="benefit-title">Ideal para:</p>
+            <ul>
+              <li>Gestores que precisam de visão rápida</li>
+              <li>Empresas com dados espalhados</li>
+              <li>Diretores de operações e finanças</li>
+            </ul>
+          </div>
+          <div class="solution-results">
+            <div class="result-item">
+              <strong>5-8h/semana</strong>
+              <span>economizadas</span>
+            </div>
+            <div class="result-item">
+              <strong>100%</strong>
+              <span>automatizado</span>
+            </div>
+          </div>
+          <a class="btn ghost small" data-magnetic href="#contact">Solicitar Orçamento</a>
         </article>
+
+        <!-- Solução 3: Assistente Executivo -->
         <article class="solution-card glass-card" data-magnetic>
-          <div class="icon emoji" aria-hidden="true">🤖</div>
-          <p class="tag">Assistência Executiva</p>
-          <h3>CEO Aumentado (Assistente Executivo).</h3>
-          <p class="copy">GPT customizado que funciona como segundo cérebro: responde perguntas sobre o negócio, gera checklists, redige e-mails, cria propostas e organiza prioridades.</p>
-          <ul class="solution-meta">
-            <li><strong>Ideal para:</strong> founders solo, CEOs de PMEs, gestores sobrecarregados.</li>
-            <li><strong>Resultado típico:</strong> economiza 6–10h/semana de trabalho administrativo.</li>
-            <li><strong>Prazo:</strong> 1–2 semanas.</li>
-            <li><strong>Preço:</strong> a partir de R$ 1.000 (setup) + R$ 300/mês (ajustes).</li>
-          </ul>
-          <a class="btn ghost small" data-magnetic href="#contact">Quero saber mais</a>
+          <div class="solution-header">
+            <div class="solution-icon">🤖</div>
+            <span class="solution-tag">Estratégia</span>
+          </div>
+          <h3>Assistente Executivo Personalizado</h3>
+          <p class="solution-desc">
+            IA treinada com os processos, documentos e conhecimento específico do seu negócio. Funciona como segundo cérebro para decisões rápidas e execução.
+          </p>
+          <div class="solution-benefits">
+            <p class="benefit-title">Ideal para:</p>
+            <ul>
+              <li>Founders solo e CEOs</li>
+              <li>Gestores sobrecarregados</li>
+              <li>Quem precisa de agilidade nas decisões</li>
+            </ul>
+          </div>
+          <div class="solution-results">
+            <div class="result-item">
+              <strong>6-10h/semana</strong>
+              <span>economizadas</span>
+            </div>
+            <div class="result-item">
+              <strong>Seu contexto</strong>
+              <span>personalizado</span>
+            </div>
+          </div>
+          <a class="btn ghost small" data-magnetic href="#contact">Solicitar Orçamento</a>
         </article>
+
       </div>
     </section>
 
+    <!-- Como Funciona -->
     <section id="process" class="section process" data-animate>
       <div class="section-header">
-        <p class="eyebrow">Passo a passo</p>
+        <p class="eyebrow">Processo</p>
         <h2>Como é trabalhar com a Singular.</h2>
-        <p class="lede">Processo rápido, previsível e sem mistério.</p>
+        <p class="lede">Transparente, direto e focado em resultado.</p>
       </div>
-      <div class="process-grid">
-        <article class="glass-card">
-          <p class="tag">Passo 1</p>
-          <h3>Diagnóstico (30 min grátis).</h3>
-          <p class="copy">Você agenda uma call. Vamos entender seu negócio, processos e gargalos. Sem compromisso.</p>
+      <div class="process-timeline">
+        <article class="process-step glass-card">
+          <div class="step-number">01</div>
+          <h3>Diagnóstico Gratuito</h3>
+          <p>Conversa de 30 minutos para entender seus desafios, processos e objetivos. Sem compromisso.</p>
         </article>
-        <article class="glass-card">
-          <p class="tag">Passo 2</p>
-          <h3>Proposta personalizada (1–2 dias).</h3>
-          <p class="copy">Enviamos uma proposta com escopo, prazo e preço. Você decide se faz sentido.</p>
+        <article class="process-step glass-card">
+          <div class="step-number">02</div>
+          <h3>Proposta Personalizada</h3>
+          <p>Enviamos orçamento detalhado com escopo, funcionalidades e investimento. Você decide se faz sentido.</p>
         </article>
-        <article class="glass-card">
-          <p class="tag">Passo 3</p>
-          <h3>Implementação (2–3 semanas).</h3>
-          <p class="copy">Montamos e integramos as automações. Você acompanha tudo e dá feedback.</p>
+        <article class="process-step glass-card">
+          <div class="step-number">03</div>
+          <h3>Implementação Guiada</h3>
+          <p>Desenvolvemos e integramos a solução. Você acompanha cada etapa e dá feedback em tempo real.</p>
         </article>
-        <article class="glass-card">
-          <p class="tag">Passo 4</p>
-          <h3>Treinamento + ajustes (2 semanas).</h3>
-          <p class="copy">Treinamos sua equipe e ajustamos até tudo funcionar perfeitamente.</p>
+        <article class="process-step glass-card">
+          <div class="step-number">04</div>
+          <h3>Treinamento e Suporte</h3>
+          <p>Capacitamos sua equipe e fazemos ajustes contínuos. Suporte incluso na assinatura mensal.</p>
         </article>
       </div>
     </section>
 
-    <section id="impact" class="section impact" data-animate>
+    <!-- Por Que Singular -->
+    <section id="about" class="section why-singular" data-animate>
       <div class="section-header">
-        <p class="eyebrow">Impacto</p>
-        <h2>Vantagem injusta em números.</h2>
-        <p class="lede">Automação com segurança corporativa e retorno rápido.</p>
+        <p class="eyebrow">Diferenciais</p>
+        <h2>Por que escolher a Singular.</h2>
       </div>
-      <div class="impact-grid">
-        <div class="impact-card glass-card">
-          <p class="stat">-40%</p>
-          <p class="label">custo operacional em fluxos automatizados.</p>
-        </div>
-        <div class="impact-card glass-card">
-          <p class="stat">10h+</p>
-          <p class="label">economia semanal média por líder atendido.</p>
-        </div>
-        <div class="impact-card glass-card">
-          <p class="stat">24/7</p>
-          <p class="label">agentes executando tarefas críticas sem supervisionar.</p>
-        </div>
-        <div class="impact-card glass-card">
-          <p class="stat">0</p>
-          <p class="label">dados vazando para modelos públicos.</p>
-        </div>
-      </div>
-      <div class="stack-info glass-card">
-        <div>
-          <p class="tag">Stack</p>
-          <h3>Agnósticos, com consenso.</h3>
-          <p class="copy">GPT-4, Claude 3.5 e Gemini Pro, balanceados por pesos de consenso e guardrails.</p>
-        </div>
-        <div class="stack-row">
-          <span class="chip glow">API isolada</span>
-          <span class="chip glow">Trilha de auditoria</span>
-          <span class="chip glow">Segurança e compliance</span>
-        </div>
+      <div class="why-grid">
+        <article class="glass-card why-card">
+          <div class="why-icon">⚡</div>
+          <h3>Sem pacotes prontos</h3>
+          <p>Cada solução é única e <strong>Singular</strong>. Adaptamos tudo para sua realidade.</p>
+        </article>
+        <article class="glass-card why-card">
+          <div class="why-icon">🎯</div>
+          <h3>Tempo singular para cada necessidade</h3>
+          <p>Não apressamos entregas. Priorizamos qualidade e adequação perfeita ao seu negócio.</p>
+        </article>
+        <article class="glass-card why-card">
+          <div class="why-icon">🔒</div>
+          <h3>Segurança em primeiro lugar</h3>
+          <p>APIs isoladas, dados criptografados e trilha completa de auditoria. Nada vaza para modelos públicos.</p>
+        </article>
+        <article class="glass-card why-card">
+          <div class="why-icon">🤝</div>
+          <h3>Suporte contínuo incluso</h3>
+          <p>Ajustes, melhorias e suporte técnico estão inclusos na assinatura mensal. Você nunca fica sozinho.</p>
+        </article>
+        <article class="glass-card why-card">
+          <div class="why-icon">📈</div>
+          <h3>Foco em ROI real</h3>
+          <p>Implementamos apenas o que gera resultado mensurável. Sem firulas, sem over-engineering.</p>
+        </article>
+        <article class="glass-card why-card">
+          <div class="why-icon">🧠</div>
+          <h3>Agnósticos em modelos</h3>
+          <p>GPT-4, Claude, Gemini — escolhemos a melhor IA para cada tarefa, com consenso quando necessário.</p>
+        </article>
       </div>
     </section>
 
-    <section id="quem-somos" class="section about" data-animate>
-      <div class="about-header">
-        <h2>Quem é Singular</h2>
-        <p class="lede">Consultoria focada em transformar PMEs com automação real.</p>
-      </div>
-
-      <div class="about-story">
-        <h3>Nossa história</h3>
-        <p>
-          A Singular nasceu da frustração de ver empresas perderem horas — e dinheiro — em tarefas que máquinas fazem melhor.
-        </p>
-        <p>
-          Em 2025, formalizamos a Singular: consultoria 100% focada em implementar automações que eliminam tempo perdido e reduzem custo operacional de verdade.
-        </p>
-      </div>
-
-      <div class="about-grid">
-        <article class="glass-card">
-          <h4 class="about-label">🎯 MISSÃO</h4>
-          <p class="about-copy">Democratizar acesso a automação de IA para PMEs. Sem ser tech. Sem ser caro.</p>
-        </article>
-        <article class="glass-card">
-          <h4 class="about-label">🔮 VISÃO</h4>
-          <p class="about-copy">
-            Um futuro onde empresas eliminam trabalho repetitivo e sua equipe se dedica ao que realmente importa.
-          </p>
-        </article>
-        <article class="glass-card">
-          <h4 class="about-label">💎 VALORES</h4>
-          <p class="about-copy">Honestidade. Simplicidade. Resultado. Sem jargão. Sem promessa vazia.</p>
-        </article>
-      </div>
-
-      <div class="about-why">
-        <h3>Por que escolher Singular</h3>
-        <div class="about-why-grid">
-          <article
-            class="glass-card about-why-card"
-            onmouseenter="document.body.classList.add('hovering')"
-            onmouseleave="document.body.classList.remove('hovering')"
-          >
-            <h5>✅ Implementação Real</h5>
-            <p>Você recebe automação funcionando, testada, pronta para usar.</p>
-          </article>
-          <article
-            class="glass-card about-why-card"
-            onmouseenter="document.body.classList.add('hovering')"
-            onmouseleave="document.body.classList.remove('hovering')"
-          >
-            <h5>✅ Transparência Total</h5>
-            <p>Diagnóstico grátis. Proposta clara. Sem surpresas de preço.</p>
-          </article>
-          <article
-            class="glass-card about-why-card"
-            onmouseenter="document.body.classList.add('hovering')"
-            onmouseleave="document.body.classList.remove('hovering')"
-          >
-            <h5>✅ Suporte Real</h5>
-            <p>Acompanhamos implementação, treinamos equipe, fazemos ajustes.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
+    <!-- Contato -->
     <section id="contact" class="section contact" data-animate>
       <div class="section-header">
-        <p class="eyebrow">Próximo passo</p>
-        <h2>Agende 30 min de Diagnóstico Grátis.</h2>
-        <p class="lede">Vamos mapear onde você perde tempo e quanto pode economizar automatizando com IA. Sem compromisso.</p>
+        <p class="eyebrow">Próximo Passo</p>
+        <h2>Vamos conversar sobre seu negócio.</h2>
+        <p class="lede">Diagnóstico gratuito de 30 minutos para mapear oportunidades de automação. Sem compromisso.</p>
       </div>
-      <form class="contact-form">
+      
+      <form class="contact-form" id="contactForm">
+        <div class="form-row">
+          <label>
+            <span class="label-text">Seu nome completo</span>
+            <input type="text" name="name" placeholder="Como podemos te chamar?" required>
+          </label>
+          <label>
+            <span class="label-text">WhatsApp</span>
+            <input type="tel" name="whatsapp" placeholder="(11) 99999-9999" required>
+          </label>
+        </div>
+
+        <div class="form-row">
+          <label>
+            <span class="label-text">E-mail profissional</span>
+            <input type="email" name="email" placeholder="voce@empresa.com" required>
+          </label>
+          <label>
+            <span class="label-text">Nome da empresa</span>
+            <input type="text" name="company" placeholder="Onde você trabalha?">
+          </label>
+        </div>
+
         <label>
-          Nome completo
-          <input type="text" name="name" placeholder="Seu nome" required>
+          <span class="label-text">Tamanho da equipe</span>
+          <select name="team_size" required>
+            <option value="">Selecione...</option>
+            <option value="solo">Apenas eu (solo)</option>
+            <option value="2-5">2 a 5 pessoas</option>
+            <option value="6-10">6 a 10 pessoas</option>
+            <option value="11-20">11 a 20 pessoas</option>
+            <option value="20+">Mais de 20 pessoas</option>
+          </select>
         </label>
+
         <label>
-          WhatsApp (obrigatório)
-          <input type="tel" name="whatsapp" placeholder="(11) 99999-9999" required>
+          <span class="label-text">Qual área consome mais tempo manual?</span>
+          <select name="main_area" required>
+            <option value="">Selecione...</option>
+            <option value="atendimento">Atendimento ao cliente</option>
+            <option value="vendas">Vendas e prospecção</option>
+            <option value="operacoes">Operações internas</option>
+            <option value="relatorios">Relatórios e análises</option>
+            <option value="admin">Tarefas administrativas</option>
+            <option value="outro">Outra área</option>
+          </select>
         </label>
+
         <label>
-          E-mail
-          <input type="email" name="email" placeholder="voce@empresa.com" required>
+          <span class="label-text">Descreva o principal desafio que você quer resolver</span>
+          <textarea 
+            name="challenge" 
+            rows="4" 
+            placeholder="Exemplo: Passamos horas respondendo as mesmas perguntas no WhatsApp todos os dias, e isso tira o foco do time de vendas..."
+            required
+          ></textarea>
         </label>
+
         <label>
-          Empresa (opcional)
-          <input type="text" name="company" placeholder="Onde você lidera?">
+          <span class="label-text">Já usa alguma ferramenta de IA?</span>
+          <select name="ai_experience">
+            <option value="">Selecione...</option>
+            <option value="nao">Não, nunca usei</option>
+            <option value="casual">Uso ChatGPT ocasionalmente</option>
+            <option value="tentou">Já tentei automatizar mas travei</option>
+            <option value="usa">Uso IA mas quero algo mais customizado</option>
+          </select>
         </label>
-        <label>
-          Qual é o maior gargalo manual no seu negócio hoje?
-          <textarea name="challenge" rows="3" placeholder="Conte o fluxo que mais toma tempo" required></textarea>
-        </label>
-        <button type="submit" class="btn primary" data-magnetic>Agendar Diagnóstico</button>
-        <p class="form-note">Resposta em até 24h. Zero pressão de venda.</p>
+
+        <button type="submit" class="btn primary btn-submit" data-magnetic>
+          Enviar Solicitação
+        </button>
+
+        <p class="form-note">
+          ⚡ Resposta em até 24 horas úteis. Nenhuma pressão de venda.
+        </p>
       </form>
     </section>
+
   </main>
 
+  <!-- Footer -->
   <footer class="footer">
-    <div class="footer-brand">
-      <div class="brand-mark" aria-hidden="true"></div>
-      <div>
-        <p class="brand-name">Singular</p>
-        <p class="brand-slogan">Consultoria e implementação de IA.</p>
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="brand-mark-footer" aria-hidden="true">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="presentation">
+            <path d="M32 4 8 16v32l24 12 24-12V16Z" fill="url(#gFooter)" stroke="rgba(96,165,250,0.5)" stroke-width="2"/>
+            <path d="M32 4v24l-24 12" fill="none" stroke="rgba(96,165,250,0.6)" stroke-width="2"/>
+            <path d="M32 28 56 16" fill="none" stroke="rgba(96,165,250,0.6)" stroke-width="2"/>
+            <defs>
+              <linearGradient id="gFooter" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#2563EB"/>
+                <stop offset="1" stop-color="#60A5FA"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div>
+          <p class="footer-brand-name">Singular</p>
+          <p class="footer-tagline">A singularidade da IA aplicada ao seu negócio.</p>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <a href="#home">Início</a>
+          <a href="#solutions">Soluções</a>
+          <a href="#process">Como Funciona</a>
+          <a href="#about">Sobre Nós</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <a href="#contact">Solicitar Orçamento</a>
+          <a href="#contact">Diagnóstico Grátis</a>
+        </div>
+        <div class="footer-col">
+          <h4>Social</h4>
+          <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="#" target="_blank" rel="noopener">Manifesto</a>
+        </div>
       </div>
     </div>
-    <div class="footer-links">
-      <a href="#home">Início</a>
-      <a href="#solutions">Soluções</a>
-      <a href="#process">Como Funciona</a>
-      <a href="#impact">Impacto</a>
-      <a href="#contact">Contato</a>
+
+    <div class="footer-bottom">
+      <p>© 2025 Singular. Todos os direitos reservados.</p>
+      <p class="footer-powered">Powered by Biological & Artificial Intelligence.</p>
     </div>
-    <div class="footer-cta">
-      <p>Links</p>
-      <div class="footer-actions">
-        <a href="#" class="inline-cta">LinkedIn</a>
-        <a href="#" class="inline-cta">Manifesto</a>
-      </div>
-    </div>
-    <span class="footer-note">© 2025 Singular Tech. Automação com IA para PMEs.</span>
   </footer>
 
   <script src="scripts.js"></script>
